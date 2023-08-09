@@ -1,0 +1,2 @@
+fastapi
+PyJWT==2.6.0
