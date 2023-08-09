@@ -18,10 +18,10 @@ An example of how to use the package is shown below:
 from fastapi import FastAPI, Depends
 from gtauthclient import GTAuthClient
 
-auth = GTAuthClient(encryption_key="Your encryption key")
+auth = GTAuthClient(key="Your encryption key")
 app = FastAPI()
 
-@app.get("/v1/users", dependencies=[Depends(auth.get_user)])
+@app.get("/v1/users", dependencies=[Depends(auth.verify_user)])
 async def list_users():
     return ["John", "Jane", "Jack"]
 ```
