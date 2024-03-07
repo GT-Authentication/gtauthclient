@@ -14,7 +14,7 @@ class GTAuthClient:
                 scheme, _, api_key = authorization.partition(" ")
                 authorization = api_key
             return jwt.decode(
-                jwt=api_key,
+                jwt=authorization,
                 key=self.key,
                 algorithms=["HS256"],
             )
