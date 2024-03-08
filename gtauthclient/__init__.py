@@ -1,5 +1,6 @@
 import jwt
 from fastapi import Header, HTTPException
+from datetime import timedelta
 
 
 class GTAuthClient:
@@ -17,6 +18,7 @@ class GTAuthClient:
                 jwt=authorization,
                 key=self.key,
                 algorithms=["HS256"],
+                leeway=timedelta(seconds=90),
             )
         except:
             raise HTTPException(status_code=401, detail="Invalid token.")
