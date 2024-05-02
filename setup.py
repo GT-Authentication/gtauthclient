@@ -12,8 +12,8 @@ with open(os.path.join(this_directory, "requirements.txt")) as f:
 
 setup(
     name="gtauthclient",
-    version="0.0.6",
-    description="GT Auth Client for FastAPI",
+    version="0.0.7",
+    description="GT Auth Client Functions",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Josh XT",
