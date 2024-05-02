@@ -12,7 +12,9 @@ pip install gtauthclient
 
 ## Usage
 
-An example of how to use the package is shown below:
+### FastAPI example
+
+Upon receiving a request, the GT Auth Client will verify the JWT token in the `Authorization` header. If the token is valid, the request will be allowed to proceed. If the token is invalid, the request will be rejected.
 
 ```python
 from fastapi import FastAPI, Depends
@@ -28,6 +30,8 @@ async def list_users():
 
 ### Generating an encryption key
 
+The encryption key is used to encrypt and decrypt data. It is generated using the `new_secure_string` method.
+
 ```python
 from gtauthclient import GTAuthClient
 
@@ -42,12 +46,12 @@ Encryption key: HexwwUHSnMb0dE4kvYn9HZHHP9s4sUktEwm774Vac86TjC0nzVIFjz8DA5astSEl
 
 ### Encrypting a string
 
+The `encrypt` method is used to encrypt a string.
+
 ```python
 encrypted_string = auth.encrypt(data="This is a test string!")
 print(f"Encrypted string: {encrypted_string}")
 ```
-
-Response:
 
 ```text
 Encrypted string: U2FsdGVkX19QpGhuABCP13Mqo6vxEkd9u3Wxs9GXOrAeC8JT9D0h9xerM8m5IQeQ
@@ -55,12 +59,12 @@ Encrypted string: U2FsdGVkX19QpGhuABCP13Mqo6vxEkd9u3Wxs9GXOrAeC8JT9D0h9xerM8m5IQ
 
 ### Decrypting a string
 
+The `decrypt` method is used to decrypt a string.
+
 ```python
 decrypted_string = auth.decrypt(data=encrypted_string)
 print(f"Decrypted string: {decrypted_string}")
 ```
-
-Response:
 
 ```text
 Decrypted string: This is a test string!
@@ -68,12 +72,12 @@ Decrypted string: This is a test string!
 
 ### Decrypting a JWT
 
+The `verify_user` method is used to decrypt a JWT token as seen in the FastAPI example.
+
 ```python
 decrypted_jwt = auth.verify_user(authorization=encryption_key)
 print(f"Decrypted JWT: {decrypted_jwt}")
 ```
-
-Response:
 
 ```text
 Decrypted JWT: {'sub': 'ADMIN', 'role': 'ADMIN'}
